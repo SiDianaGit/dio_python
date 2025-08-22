@@ -17,6 +17,10 @@ O sistema oferece as seguintes operações:
   * **Depósito**: Permite depositar valores positivos na conta. O valor é adicionado ao saldo e registrado para o extrato.
   * **Saque**: Limita o saque a 3 operações diárias, com um valor máximo de R$ 500,00 por saque. Verifica se há saldo suficiente para a transação.
   * **Extrato**: Lista todas as movimentações (depósitos e saques) realizadas na conta e exibe o saldo atual no final.
+                 Mostrar no extrato a data e hora de todas as transações realizadas pela conta.
+  * **Limite de Saques**: Estabelecer um limite de 10 transações diárias para uma conta
+                          Se um cliente tentar fazer uma transação após atingir o limite, deve ser informado que ele excedeu o número de transações permitidas para aquele dia.
+
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -34,7 +38,7 @@ O sistema oferece as seguintes operações:
     ```
 3.  Execute o script Python:
     ```bash
-    python3 app.py
+    python app.py
     ```
     (Obs: Substitua `app.py` pelo nome do arquivo do seu código, se for diferente).
 
