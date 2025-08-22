@@ -1,63 +1,61 @@
-# dio_python
+# Sistema Bancário Modularizado
 
-Este README.md foi gerado para um projeto de backend em Python, que simula um sistema bancário simples com operações de depósito, saque e extrato. 
+Este projeto é um sistema bancário simples, desenvolvido em Python, que simula operações bancárias para múltiplos clientes e contas. O código foi modularizado em funções para uma melhor organização, legibilidade e manutenção, tornando-o um excelente exemplo de refatoração e boas práticas de programação.
 
------
+---
 
-### **README.md**
+### Funcionalidades
 
-# DESAFIO 1 -> Sistema Bancário Simples
+O sistema oferece as seguintes operações, organizadas em funções para uma estrutura mais clara:
 
-Este projeto é um backend simples desenvolvido em Python 3 que simula operações bancárias básicas para um único cliente. Ele foi criado como um exercício prático para solidificar conceitos de lógica de programação, controle de fluxo e manipulação de variáveis.
+* **Depositar (`[d]`)**: Permite depositar um valor em uma conta específica.
+* **Sacar (`[s]`)**: Permite sacar um valor da conta, respeitando o limite diário de 3 saques e o valor máximo de R$ 500,00 por saque. Verifica se há saldo suficiente.
+* **Visualizar Extrato (`[e]`)**: Exibe o histórico de transações (depósitos e saques) com data e hora, além do saldo atual da conta.
+* **Cadastrar Usuário (`[nu]`)**: Cria um novo cliente no banco. Cada usuário é identificado de forma única pelo CPF e possui um nome, data de nascimento e endereço.
+* **Criar Conta Corrente (`[nc]`)**: Cria uma nova conta corrente vinculada a um usuário existente através do CPF. A agência é fixa (`0001`) e o número da conta é sequencial, começando em 1.
+* **Listar Contas (`[lc]`)**: Exibe uma lista de todas as contas cadastradas.
+* **Listar Usuários (`[lu]`)**: Exibe uma lista de todos os usuários cadastrados.
+* **Sair (`[q]`)**: Encerra a execução do programa.
 
-## 🚀 Funcionalidades
+O sistema também estabelece um limite de 10 transações (depósito ou saque) por dia para cada conta.
 
-O sistema oferece as seguintes operações:
+---
 
-  * **Depósito**: Permite depositar valores positivos na conta. O valor é adicionado ao saldo e registrado para o extrato.
-  * **Saque**: Limita o saque a 3 operações diárias, com um valor máximo de R$ 500,00 por saque. Verifica se há saldo suficiente para a transação.
-  * **Extrato**: Lista todas as movimentações (depósitos e saques) realizadas na conta e exibe o saldo atual no final.
-                 Mostrar no extrato a data e hora de todas as transações realizadas pela conta.
-  * **Limite de Saques**: Estabelecer um limite de 10 transações diárias para uma conta
-                          Se um cliente tentar fazer uma transação após atingir o limite, deve ser informado que ele excedeu o número de transações permitidas para aquele dia.
+### Estrutura do Código
 
+O código utiliza um menu interativo dentro de um loop `while` para gerenciar as operações. A lógica foi reorganizada em funções, cada uma com uma responsabilidade clara.
 
-## 🛠️ Tecnologias Utilizadas
+* Os dados dos **usuários** e **contas** são armazenados em listas, onde cada item é um dicionário contendo os atributos do respectivo objeto (ex: nome, CPF, saldo).
+* As funções de `saque`, `deposito` e `extrato` agora exigem que o CPF e o número da conta sejam informados para identificar a conta correta.
+* As regras de passagem de argumentos foram aplicadas, com `sacar` usando argumentos nomeados, `depositar` usando argumentos posicionais e `exibir_extrato` usando uma combinação de ambos.
 
-  * **Python 3**: Linguagem de programação principal.
+---
 
-## 💻 Como Executar
+### Tecnologias Utilizadas
 
-1.  Clone este repositório para a sua máquina local:
-    ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    ```
-2.  Navegue até o diretório do projeto:
-    ```bash
-    cd seu-repositorio
-    ```
-3.  Execute o script Python:
-    ```bash
-    python app.py
-    ```
-    (Obs: Substitua `app.py` pelo nome do arquivo do seu código, se for diferente).
+* **Python 3**: Linguagem de programação principal.
 
-O programa será iniciado e exibirá um menu de opções no terminal para que você possa interagir com ele.
+---
 
-## 🧠 Lógica e Estrutura do Código
+### Como Executar
 
-O código utiliza um loop `while` para manter o menu interativo, permitindo que o usuário realize múltiplas operações até decidir sair. As variáveis principais são:
+Para rodar o sistema, certifique-se de ter o Python instalado em sua máquina.
 
-  * `saldo`: Armazena o saldo atual da conta.
-  * `extrato`: Uma string que acumula o histórico de transações, formatando os valores.
-  * `numero_saques`: Contador de saques diários.
-  * `limite_saques`: Constante que define o número máximo de saques por dia.
+1. Salve o código em um arquivo `.py` (por exemplo, `banco.py`).
+2. Abra o terminal ou prompt de comando.
+3. Navegue até o diretório onde você salvou o arquivo.
+4. Execute o seguinte comando:
 
-As operações de **depósito** e **saque** verificam as condições necessárias (valor positivo, saldo suficiente, limite de saque) antes de alterar o saldo e o histórico. A operação de **extrato** simplesmente exibe o conteúdo da variável `extrato` e o saldo atual, formatando a saída para o formato "R$ 999.99".
+```bash
+python banco.py
+```
 
-## 📚 Melhorias Futuras (Possíveis)
+O menu de opções será exibido, permitindo que você comece a interagir com o sistema.
 
-  * **Multiplos Clientes**: Refatorar o código para permitir a criação e gestão de múltiplas contas bancárias, utilizando classes ou dicionários para armazenar os dados de cada cliente (nome, CPF, saldo, etc.).
-  * **Funções**: Organizar o código em funções (`depositar()`, `sacar()`, `exibir_extrato()`) para melhorar a modularidade e legibilidade.
-  * **Interface Gráfica**: Adicionar uma interface de usuário (GUI) utilizando bibliotecas como `Tkinter` ou `PyQt`.
-  * **Persistência de Dados**: Salvar os dados das contas em um arquivo (JSON, CSV) ou banco de dados para que as informações não sejam perdidas ao fechar o programa.
+---
+
+### Melhorias Futuras
+
+* **Persistência de Dados**: Implementar o salvamento dos dados de usuários e contas em um arquivo (como JSON) ou em um banco de dados para que as informações não sejam perdidas ao fechar o programa.
+* **Classes e Orientação a Objetos**: Refatorar o código para usar classes (`Cliente`, `Conta`) para encapsular dados e comportamentos, tornando o código ainda mais robusto.
+* **Interfaces**: Adicionar uma interface de usuário (GUI) com bibliotecas como `Tkinter` ou `PyQt`, ou criar uma interface web com frameworks como `Flask`.
