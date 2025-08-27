@@ -1,61 +1,55 @@
-# Sistema Bancário Modularizado
 
-Este projeto é um sistema bancário simples, desenvolvido em Python, que simula operações bancárias para múltiplos clientes e contas. O código foi modularizado em funções para uma melhor organização, legibilidade e manutenção, tornando-o um excelente exemplo de refatoração e boas práticas de programação.
+# Sistema de Banco Moderno em Python
 
----
+Este projeto é uma simulação de um sistema bancário simples, focado em operações básicas como depósito, saque e visualização de extrato. Ele foi refatorado para usar uma arquitetura orientada a objetos, seguindo o diagrama de classes UML anexo, tornando o código mais modular, organizado e fácil de manter.
 
-### Funcionalidades
+## Diagrama de Classes UML
 
-O sistema oferece as seguintes operações, organizadas em funções para uma estrutura mais clara:
+O sistema oferece as seguintes operações:
 
-* **Depositar (`[d]`)**: Permite depositar um valor em uma conta específica.
-* **Sacar (`[s]`)**: Permite sacar um valor da conta, respeitando o limite diário de 3 saques e o valor máximo de R$ 500,00 por saque. Verifica se há saldo suficiente.
-* **Visualizar Extrato (`[e]`)**: Exibe o histórico de transações (depósitos e saques) com data e hora, além do saldo atual da conta.
-* **Cadastrar Usuário (`[nu]`)**: Cria um novo cliente no banco. Cada usuário é identificado de forma única pelo CPF e possui um nome, data de nascimento e endereço.
-* **Criar Conta Corrente (`[nc]`)**: Cria uma nova conta corrente vinculada a um usuário existente através do CPF. A agência é fixa (`0001`) e o número da conta é sequencial, começando em 1.
-* **Listar Contas (`[lc]`)**: Exibe uma lista de todas as contas cadastradas.
-* **Listar Usuários (`[lu]`)**: Exibe uma lista de todos os usuários cadastrados.
-* **Sair (`[q]`)**: Encerra a execução do programa.
+### Principais Classes e Funções
 
-O sistema também estabelece um limite de 10 transações (depósito ou saque) por dia para cada conta.
+  * **`Cliente`**: Uma classe base que representa o cliente do banco. Pode ter uma ou várias `Contas`.
+  * **`PessoaFisica`**: Herda de `Cliente` e adiciona atributos específicos como `nome`, `cpf` e `data_nascimento`.
+  * **`Conta`**: Classe base para contas bancárias. Gerencia o `saldo`, `número`, `agência` e o histórico de transações.
+  * **`ContaCorrente`**: Herda de `Conta` e implementa a lógica de `limite` e `limite_saques` diários.
+  * **`Historico`**: Responsável por armazenar e gerenciar todas as transações de uma conta.
+  * **`Transacao`**: Uma classe abstrata que serve como interface para todas as transações.
+  * **`Deposito`** e **`Saque`**: Classes que herdam de `Transacao` e implementam a lógica específica para registrar as respectivas operações.
 
----
+## Funcionalidades do Sistema
 
-### Estrutura do Código
+O sistema oferece as seguintes operações através de um menu interativo:
 
-O código utiliza um menu interativo dentro de um loop `while` para gerenciar as operações. A lógica foi reorganizada em funções, cada uma com uma responsabilidade clara.
+  * **`[d]` Depositar**: Permite depositar um valor em uma conta específica.
+  * **`[s]` Sacar**: Permite sacar um valor, respeitando os limites da conta corrente.
+  * **`[e]` Extrato**: Exibe o extrato completo de uma conta, listando todas as transações realizadas.
+  * **`[nu]` Novo Usuário**: Cadastra um novo cliente (Pessoa Física) no sistema.
+  * **`[nc]` Nova Conta**: Cria uma nova conta corrente e a vincula a um cliente existente.
+  * **`[lc]` Listar Contas**: Exibe uma lista de todas as contas cadastradas.
+  * **`[lu]` Listar Usuários**: Exibe uma lista de todos os usuários cadastrados.
+  * **`[q]` Sair**: Encerra a aplicação.
 
-* Os dados dos **usuários** e **contas** são armazenados em listas, onde cada item é um dicionário contendo os atributos do respectivo objeto (ex: nome, CPF, saldo).
-* As funções de `saque`, `deposito` e `extrato` agora exigem que o CPF e o número da conta sejam informados para identificar a conta correta.
-* As regras de passagem de argumentos foram aplicadas, com `sacar` usando argumentos nomeados, `depositar` usando argumentos posicionais e `exibir_extrato` usando uma combinação de ambos.
+## Como Executar
 
----
-
-### Tecnologias Utilizadas
-
-* **Python 3**: Linguagem de programação principal.
-
----
-
-### Como Executar
-
-Para rodar o sistema, certifique-se de ter o Python instalado em sua máquina.
-
-1. Salve o código em um arquivo `.py` (por exemplo, `banco.py`).
-2. Abra o terminal ou prompt de comando.
-3. Navegue até o diretório onde você salvou o arquivo.
-4. Execute o seguinte comando:
+Para rodar o sistema, basta ter o Python 3.8 ou superior instalado. Execute o arquivo `main.py` diretamente pelo terminal:
 
 ```bash
-python banco.py
+python desafio4.py
 ```
 
-O menu de opções será exibido, permitindo que você comece a interagir com o sistema.
+## Estrutura do Projeto
 
----
+  * `desfio4.py`: Contém a lógica principal do programa, as definições de classes e a função `main` para o loop interativo.
+  * `README.md`: Este arquivo, que fornece uma visão geral do projeto.
+  * `UML Desafio4.jpg`: O diagrama UML que serviu de base para a arquitetura do código.
+
+## Autor
+
+Este projeto foi desenvolvido por: *Simone*
+https://github.com/SiDianaGit
 
 ### Melhorias Futuras
 
 * **Persistência de Dados**: Implementar o salvamento dos dados de usuários e contas em um arquivo (como JSON) ou em um banco de dados para que as informações não sejam perdidas ao fechar o programa.
-* **Classes e Orientação a Objetos**: Refatorar o código para usar classes (`Cliente`, `Conta`) para encapsular dados e comportamentos, tornando o código ainda mais robusto.
 * **Interfaces**: Adicionar uma interface de usuário (GUI) com bibliotecas como `Tkinter` ou `PyQt`, ou criar uma interface web com frameworks como `Flask`.
