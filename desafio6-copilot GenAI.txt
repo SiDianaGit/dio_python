@@ -1,0 +1,21 @@
+Resumo sobre respostas usando Generative AI do Copilot
+
+A microsoft está utilizando o OpenAI ChatGPT 4 como modelo LLM base no Copilot (no momento da gravação do treinamento da DIO). Este modelo responde com maior acuricidade se utilizada a língua inglesa no prompt e respostas.
+
+Ao criar um agente as informações de "Descrição" e "Instruções" serão utilizadas para dar direcionamento ao comportamento e tom do agente Copilot, por isso é importante ter um cuidado maior no preenchimento.
+
+As respostas generativas são configuradas no Tópico de sistema "Conversational Boosting" que podem receber como entrada/input o histórico de conversa do chat (activity.Text) ou conteúdo de variáveis,
+ou na criação de um tópico (em branco) iniciando por um tópico "Gatilho" (Trigger) para informar frases de gatilho na conversa do usuário, e adicionar em avançado um nó de tópico "Respostas Generativas" (Generative answers) com a entrada/input recebendo o histórico de conversa do chat (activity.Text) do nó "Gatilho" (Trigger).
+
+Pode ser configurado um tópico de fallback, o qual quando ocorrer um erro no fluxo de conversa principal a conversa ele pode direcionar para um atendimento humano, alimentar as bases de conhecimento, gerar logs, acionar uma API externa http, entre outras ações possíveis buscando uma solução para o usuário.
+
+É possível ainda customizar a qualidade da resposta generativa, para isso pode ser adicionado bases de conhecimento, pode permitir a IA em utilizar o conhecimento do modelo (ChatGPT4). Pode ser também personalizado o prompt acrescentando informações pertinentes para direcionar o comportamento (até 8000 caracteres).
+Pode ser configurado o nível de moderação do conteúdo onde "Alto" (High) o agente vai buscar as informações com prababilidade mais alta do conteúdo ser compatível.
+
+Ainda no menu "Settings -> Generative AI", pode ser configurado se há restrições de conteúdo para uso do modelo, onde "Baixo" (Low) é utilizado o modo criativo do modelo LLM podendo gerar alucinações (respostas fora de contexto), e "Alto" (High) são utilizadas as bases de conhecimento previamente fornecidas para treinamento e respostas com maior acurácia.
+
+
+
+
+
+
