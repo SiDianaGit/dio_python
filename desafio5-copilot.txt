@@ -1,0 +1,15 @@
+Resumo de como iniciar a construção de um agente de IA da Microsoft Copilot
+
+Inicialmente é necessário ter pelo menos uma conta no Microsoft 365 do tipo estudante ou corporativa, para que possa ser 
+utilizada de forma gratuíta a plataforma de inteligencia artificial do Microsoft: Power Platform, incluindo o Copilot Studio e Power App.
+
+Após autenticação na plataforma, acessar o Copilot Studio.
+
+Não é recomentado criar seus agentes no ambiente padrão (Environment: default). É recomendado criar ambientes distintos de desenvolvimento e produção,
+visando manter o ambiente de produção seguro e resilente durante manutenções necessárias nos desenvolvimentos dos agentes Copilot.
+É importante criar os agentes dentro de soluções para que todas as respectivas variáveis e dependencias sejam empacotadas, possibilitando a utilização de esteiras CI/CD para a publicação desenvolvimentos em produção.
+
+É possível criar agentes das seguintes formas:
+- Selecionando um modelo disponível: Desta forma a estrutura básica do agente será automaticamente criada com tópicos (conversas), analytics. Necessitando de mais ajustes apenas em bases de conhecimento e cainais de integração do agente.
+- Baseado em descrição (prompt): O Copilot buscará qual o modelo mais adequado à descrição/prompt informado para a criação do agente.
+- Criar um agente em branco: Necessário configurar todos os itens do modelo manualmente, com a criação de um tópico, base de conhecimento, ações, analytics e canais de integração do agente.
