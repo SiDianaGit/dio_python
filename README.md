@@ -51,5 +51,4 @@ https://github.com/SiDianaGit
 
 ### Melhorias Futuras
 
-* **Persistência de Dados**: Implementar o salvamento dos dados de usuários e contas em um arquivo (como JSON) ou em um banco de dados para que as informações não sejam perdidas ao fechar o programa.
 * **Interfaces**: Adicionar uma interface de usuário (GUI) com bibliotecas como `Tkinter` ou `PyQt`, ou criar uma interface web com frameworks como `Flask`.
